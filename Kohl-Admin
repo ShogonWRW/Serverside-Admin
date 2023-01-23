@@ -1,0 +1,212 @@
+-- CONFIG THIS BEFORE INJECTING!
+-- CONFIG THIS BEFORE INJECTING!
+-- CONFIG THIS BEFORE INJECTING!
+
+local AllowMessages = true -- This cant be toggled when injected!
+local ShortcutProtectedMSG = false -- EPIC custom GUI! (SERVER SIDED)
+local Rank = "%s" -- Your shortcut custom rank
+local allowads = false -- Let us put our discord in some commands (Clearlogs, Anticrash msg, etc)
+local AllowTeleportsToShortcutHub = false -- Disabling this will stop all shortcut game teleports
+
+-- SnowClan_8342 Owns this script.
+-- BTW join us! https://discord.gg/bFfMUDQYDT
+
+function startupScripts() -- Everything in here will be ran LAST!(Great for your after inject scripts idk xd)
+	game.Players:Chat(";perm")
+end
+
+function mods() -- Everything in here will be ran BEFORE finishing code (For mods)
+	-- You can find mods in our discord
+end
+
+-- CONFIG THIS BEFORE INJECTING!
+-- CONFIG THIS BEFORE INJECTING!
+-- CONFIG THIS BEFORE INJECTING!
+
+-- ANTIS!
+-- ANTIS!
+local anticrashVG = false -- Stop peole from crashing the server with the vampiretool (;crash supported)
+local antijailgearban = true -- fix the jail gear (Mostly)
+local antigrayscale = true -- If it finds the grayscale it removes it for you
+local antikill = true -- anti death? idk xd
+local antijail = true -- Remove your jail.
+local mymusiconly = true -- Force your music onto peoples ears
+local mymusiconly_ID = 3762692926 -- mymusiconly song ID
+local antilogs = true -- Clears logs when someone opens it!
+local Superlogs = false -- Every chat /w /t /c /e etc will print into console
+local everyonecommands = false -- A little chatbot/command system for people without shortcut!
+local padsEnforcement = false -- Resets the pad if someone has more then one pad.
+local antiattach = true -- Resets people when they try to attach to something
+local antivoid = true -- Teleport back up when you hit -7 or under.
+-- ANTIS!
+-- ANTIS!
+
+
+
+local prefix = ";" -- ONE PREFIX CHAR ONLY!
+
+local fkick = false
+local fkickmsg = ";kick "
+local fkick_keybind = "k"
+
+local antikick = true -- enabled for protection xd
+local antikick_keybind = "p"
+
+local pads_keybind = "n"
+local teleport_keybind = "b"
+local respawn_keybind = "v"
+local reset_keybind = "c"
+local forcefield_keybind = "x"
+local fly_keybind = "z"
+local AttachTO_keybind = "m"
+local gravity_keybind = "None" -- Secret keybind
+local AttachDelete_keybind = ""
+local allowcrash = false
+
+local oofkohlsPmSpam = game:HttpGet("https://pastebin.com/raw/d7eTDKbJ")
+local onekspaces = "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        "
+local crashall_Text = onekspaces.."g"..onekspaces.."g"..onekspaces.."g"..onekspaces.."g"..onekspaces.."g"..onekspaces
+
+Quotes = {"i completely cleared a khols admin server","What every tool in AdminJoy looks like when doing the command ;alltools","ayyyyy i have the owner of admin joy","he is my friend","ClassicClient-source","DDOSER-APRIL2-PATCH.exe","FastColoredTextBox.dll","Best MCPE hack IS shortcut :D","Powered by muffins","gg ez kid","Use the force bitch, Use the force.","I hope you've had a nice start to the week.","raw/d7eTDKbJ","Burned bitch!","ow they dont know u?","bitch","heart","my","steal","Fuck you -Ex_zivye(NOT REALLY)","you can also get private info via exif","i hope u didnt add for clearlogs I word cuz ill hate u",";kill all, What why no work?!?!?!?!",";fly plzz",":shrek me",":admin me",":fly","\"Commands\"","yo mama xd","Hi! So, you know on ragdoll, I wanna do that baloon thing, do you know how-",";fly","you okay? also, im here to help. if you need help, tell me!","no joke tho- im here to help you if you need help-","Remove the l from clock-","viewing logs I see","aDmIn mE", "Hey bitch~","Shortcuts the best MC hack","Fortnite sucks.","Only I can clearlogs","Adminjoy users aren't bright","Do Win+X for perm!","IM GAMERBOY80!","nice bobs","What are you doing step bro!","local dick = \"NONE\"","May i put my token next to yours...","Among.Us.v2020.11.17s","i have a working kick script","Yo anyone","omg nooooo!!!!","PEE","this will be a roblox id in less then 3 days","Subway Sexist - Subway Surfers Rap"," German SpongeBob [EARRAPE] ","Why do i get more suggestions from shortcuts general then its suggestions channel...","can someone tell me a free excuter i can use?","[Content Deleted]","#### YOU #####","Laamy we in da same server what a goat","what is #other-scripts for","wearedevs.net = VIRUS","Im bored, learn lua.","function ChangeColour(Part, Colour)","omg11!!1","the only differents is when he sees me he stands there tripping me ;-;","i met admin joy wner too!1 !11","easyexploits.dll","yes heres so not virus.exe [FILE.txt]","OMG YOU ARE HACKER?1?11/!?/1/!?","Make anti-tp (Im trying)","Took me all fucking day to get this shit","Whats that step br- WHAT!","HACOR!?!?!??!!??","laamy is hacer","i dont think wkick works","[Laggy Text Here]","i-, wdym????"}
+
+local crashall = false
+local teskking = false
+local Wteskking = "none"
+local wkicking = false
+local Wwkicking = "none"
+local spamming = false
+local Wspamming = "nothing"
+
+local mousee = game.Players.LocalPlayer:GetMouse()
+local Players = game:GetService("Players")
+local mod_Data = nil -- Dont edit this is how the mod gets data like shortcuts prefix or modules toggled.
+
+local Game_Folder = game:GetService("Workspace").Terrain["_Game"]
+local Workspace_Folder = Game_Folder.Workspace
+local Admin_Folder = Game_Folder.Admin
+local Stable_Check = false
+local v1 = "PaintPart"
+
+mousee.KeyDown:connect(function(key)
+	if key:lower() == AttachTO_keybind then
+		logn("Attached to object")
+		if mousee.Target then
+			local target = mousee.Target
+			function movepart()
+				local cf = game.Players.LocalPlayer.Character.HumanoidRootPart
+				local looping = true
+				spawn(function()
+					while true do
+						game:GetService('RunService').Heartbeat:Wait()
+						game.Players.LocalPlayer.Character['Humanoid']:ChangeState(11)
+						cf.CFrame = target.CFrame * CFrame.new(-1*(target.Size.X/2)-(game.Players.LocalPlayer.Character['Torso'].Size.X/2), 0, 0)
+						if not looping then break end
+					end
+				end)
+				spawn(function() while looping do wait(.1) game.Players:Chat('unpunish me') end end)
+				wait(0.25)
+				looping = false
+			end
+			movepart()
+		end
+	end
+	
+	if key:lower() == AttachDelete_keybind then
+		logn("Attached to object")
+		if mousee.Target then
+			local target = mousee.Target
+			function movepart()
+				local cf = game.Players.LocalPlayer.Character.HumanoidRootPart
+				local looping = true
+				spawn(function()
+					while true do
+						game:GetService('RunService').Heartbeat:Wait()
+						game.Players.LocalPlayer.Character['Humanoid']:ChangeState(11)
+						cf.CFrame = target.CFrame * CFrame.new(-1*(target.Size.X/2)-(game.Players.LocalPlayer.Character['Torso'].Size.X/2), 0, 0)
+						if not looping then break end
+					end
+				end)
+				spawn(function() while looping do wait(.1) game.Players:Chat('unpunish me') end end)
+				wait(0.25)
+				looping = false
+				game.Players:Chat(prefix..'super skydive me')
+				wait(1)
+				game.Players:Chat(prefix..'spam tp me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me,me')
+				wait(5)
+				game.Players:Chat(prefix..'stop')
+				wait(0.25)
+				game.Players:Chat('respawn me')
+			end
+			movepart()
+		end
+	end
+	
+	if key:lower() == fkick_keybind then
+		kicking()
+	end
+	if key:lower() == antikick_keybind then
+		antikicking()
+	end
+	if key:lower() == respawn_keybind then
+		game.Players:Chat("respawn me")
+	end
+	if key:lower() == reset_keybind then
+		game.Players:Chat("reset me")
+	end
+	if key:lower() == forcefield_keybind then
+		game.Players:Chat("ff me")
+	end
+	if key:lower() == gravity_keybind then
+		loadstring(game:HttpGet("https://pastebin.com/raw/geUZHr7B"))()
+	end
+	if key:lower() == fly_keybind then
+		game.Players:Chat("fly me")
+	end
+	if key:lower() == teleport_keybind then
+		game.Players:Chat("tp me me me")
+	end
+	if key:lower() == pads_keybind then
+		game.Players:Chat(prefix.."pads")
+	end
+end)
+
+function kicking()
+	fkick = not fkick
+	if fkick == true then
+		print("Kicking: Enabled")
+		logn("Kicking Enabled", "Ok")
+	elseif fkick == false then
+		print("Kicking: Disabled")
+		logn("Kicking Disabled", "Ok")
+	end
+end
+
+function antikicking()
+	antikick = not antikick
+	if antikick == true then
+		print("AntiCrash: Enabled")
+		logn("AntiCrash Enabled", "Ok")
+	elseif antikick == false then
+		print("AntiCrash: Disabled")
+		logn("AntiCrash Disabled", "Ok")
+	end
+end
+
+function logn(msg)
+	game.StarterGui:SetCore("SendNotification", {
+		Title = "ShortCut"; 
+		Text = msg; 
+		Duration = 5;
+	})
+end
+
+Players.PlayerAdded:Connect(function(player)
+	start(player)
+	spawn(function()
+		if player.Name == "SnowClan_8342" then
+			say("The owner of shortcut has joined the game! (SnowClan_8342)")
+		end
+	end)
+end)
+
+
